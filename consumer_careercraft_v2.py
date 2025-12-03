@@ -59,6 +59,7 @@ CATEGORY_COLORS = {
     "Business": (COLORS['business'], hex_to_rgba(COLORS['business'])),
     "Education": (COLORS['education'], hex_to_rgba(COLORS['education'])),
     "Community": (COLORS['community'], hex_to_rgba(COLORS['community'])),
+    "Mental Health": ('#1abc9c', hex_to_rgba('#1abc9c')),  # Teal color for Mental Health
 }
 
 # =============================================================================
@@ -370,6 +371,96 @@ CAREER_DATA = {
         "entry_paths": ["Political Science/Sociology Degree", "Grassroots Experience", "Nonprofit Path"],
         "time_to_entry": "6-24 months"
     },
+    
+    # MENTAL HEALTH CAREERS
+    "Clinical Psychologist": {
+        "category": "Mental Health",
+        "skills": {"Programming": 20, "Problem Solving": 95, "Critical Thinking": 95,
+                   "Communication": 95, "Teamwork": 75, "Time Management": 85,
+                   "Creativity": 80, "Attention to Detail": 90},
+        "median_salary": 85330,
+        "growth_rate": 6,
+        "education": "Doctoral Degree (PhD/PsyD)",
+        "entry_paths": ["Psychology PhD", "PsyD Program", "Research + Clinical Training"],
+        "time_to_entry": "72-96 months"
+    },
+    "Mental Health Counselor": {
+        "category": "Mental Health",
+        "skills": {"Programming": 10, "Problem Solving": 90, "Critical Thinking": 90,
+                   "Communication": 95, "Teamwork": 85, "Time Management": 85,
+                   "Creativity": 75, "Attention to Detail": 85},
+        "median_salary": 53710,
+        "growth_rate": 18,
+        "education": "Master's Degree",
+        "entry_paths": ["Counseling Master's + Licensure", "Psychology BA + Counseling MS", "Social Work + Counseling"],
+        "time_to_entry": "24-36 months"
+    },
+    "Marriage & Family Therapist": {
+        "category": "Mental Health",
+        "skills": {"Programming": 10, "Problem Solving": 90, "Critical Thinking": 90,
+                   "Communication": 95, "Teamwork": 80, "Time Management": 85,
+                   "Creativity": 80, "Attention to Detail": 85},
+        "median_salary": 58510,
+        "growth_rate": 15,
+        "education": "Master's Degree",
+        "entry_paths": ["MFT Master's Program", "Psychology + MFT Specialization", "Social Work + Family Therapy"],
+        "time_to_entry": "24-36 months"
+    },
+    "Psychiatrist": {
+        "category": "Mental Health",
+        "skills": {"Programming": 15, "Problem Solving": 95, "Critical Thinking": 95,
+                   "Communication": 90, "Teamwork": 80, "Time Management": 90,
+                   "Creativity": 70, "Attention to Detail": 95},
+        "median_salary": 226880,
+        "growth_rate": 7,
+        "education": "Medical Degree (MD/DO)",
+        "entry_paths": ["Pre-Med + Medical School + Psychiatry Residency"],
+        "time_to_entry": "144-156 months"
+    },
+    "School Psychologist": {
+        "category": "Mental Health",
+        "skills": {"Programming": 20, "Problem Solving": 90, "Critical Thinking": 90,
+                   "Communication": 95, "Teamwork": 90, "Time Management": 85,
+                   "Creativity": 80, "Attention to Detail": 85},
+        "median_salary": 81500,
+        "growth_rate": 10,
+        "education": "Specialist/Doctoral Degree",
+        "entry_paths": ["School Psychology EdS", "Psychology PhD + School Cert", "Education + Psychology"],
+        "time_to_entry": "36-72 months"
+    },
+    "Substance Abuse Counselor": {
+        "category": "Mental Health",
+        "skills": {"Programming": 10, "Problem Solving": 85, "Critical Thinking": 85,
+                   "Communication": 95, "Teamwork": 90, "Time Management": 85,
+                   "Creativity": 70, "Attention to Detail": 80},
+        "median_salary": 49710,
+        "growth_rate": 18,
+        "education": "Bachelor's/Master's Degree",
+        "entry_paths": ["CADC Certification", "Counseling Degree + Substance Specialty", "Social Work + CASAC"],
+        "time_to_entry": "12-36 months"
+    },
+    "Psychiatric Technician": {
+        "category": "Mental Health",
+        "skills": {"Programming": 10, "Problem Solving": 75, "Critical Thinking": 75,
+                   "Communication": 90, "Teamwork": 95, "Time Management": 85,
+                   "Creativity": 60, "Attention to Detail": 90},
+        "median_salary": 37380,
+        "growth_rate": 9,
+        "education": "Certificate/Associate's",
+        "entry_paths": ["Psych Tech Certificate", "Nursing Assistant + Mental Health Training", "Associate's in Mental Health"],
+        "time_to_entry": "6-18 months"
+    },
+    "Art/Music Therapist": {
+        "category": "Mental Health",
+        "skills": {"Programming": 10, "Problem Solving": 85, "Critical Thinking": 80,
+                   "Communication": 90, "Teamwork": 85, "Time Management": 80,
+                   "Creativity": 95, "Attention to Detail": 80},
+        "median_salary": 52800,
+        "growth_rate": 12,
+        "education": "Master's Degree",
+        "entry_paths": ["Art Therapy Master's", "Music Therapy Master's", "Psychology + Creative Arts Therapy"],
+        "time_to_entry": "24-36 months"
+    },
 }
 
 # =============================================================================
@@ -453,6 +544,7 @@ st.markdown("""
     .category-business { background: #2ecc71; color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem; }
     .category-education { background: #9b59b6; color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem; }
     .category-community { background: #f39c12; color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem; }
+    .category-mental-health { background: #1abc9c; color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem; }
     
     /* Welcome box */
     .welcome-box {
@@ -791,6 +883,7 @@ if not st.session_state.onboarding_complete:
             - 💼 Business (4)
             - 📚 Education (4)
             - 🤝 Community (4)
+            - 🧠 Mental Health (8)
             """)
         
         with col2:
@@ -854,7 +947,7 @@ if not st.session_state.onboarding_complete:
         
         target_industries = st.multiselect(
             "Which industries interest you?",
-            ["Technology", "Healthcare", "Business", "Education", "Community"],
+            ["Technology", "Healthcare", "Business", "Education", "Community", "Mental Health"],
             default=["Technology"]
         )
         
@@ -1169,7 +1262,7 @@ else:
         with col1:
             filter_categories = st.multiselect(
                 "Filter by Industry",
-                ["Technology", "Healthcare", "Business", "Education", "Community"],
+                ["Technology", "Healthcare", "Business", "Education", "Community", "Mental Health"],
                 default=st.session_state.user_profile.get('target_industries', ["Technology"])
             )
         with col2:
@@ -1274,6 +1367,6 @@ st.markdown("""
 <div style="text-align: center; color: #666; font-size: 0.8rem;">
 <strong>CareerCraft AI v2.0</strong> | PhD-Level Career Intelligence<br>
 Algorithms: Causal Inference • Conformal Prediction • GraphSAGE • Conservative Q-Learning<br>
-Data: O*NET 30.0 • BLS OEWS • Census PSEO | 20 Careers • 8 Skills • Full ROI Analysis
+Data: O*NET 30.0 • BLS OEWS • Census PSEO | 28 Careers • 8 Skills • Full ROI Analysis
 </div>
 """, unsafe_allow_html=True)
